@@ -10,7 +10,9 @@ import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
+import com.vk.api.sdk.objects.groups.Fields;
 import com.vk.api.sdk.objects.messages.Message;
+import com.vk.api.sdk.queries.Field;
 import com.vk.api.sdk.queries.messages.MessagesGetLongPollHistoryQuery;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +48,11 @@ public class VkBotRunner implements VkRun{
                         String s  =  message.getText();
                         System.out.println(s);
                         try {
-                            vk.groups().getByIdObjectLegacy(userActor).groupId(s).execute().forEach(group ->{
+                            Fields field = Fields.MEMBERS_COUNT;
+                            vk.groups().getByIdObjectLegacy(userActor).groupId(s).fields(field).execute().forEach(group ->{
                                 System.out.println(s);
-                                responcy.saveGroupToApi(new VkGroup(5L, group.getName()));
+                                VkGroup vkGroup = new VkGroup(1L, group.getId(), group.getName(), group.getMembersCount(), group.getScreenName());
+                                responcy.saveGroupToApi(vkGroup);
                             });
                         } catch (ApiException e) {
                             throw new RuntimeException(e);
