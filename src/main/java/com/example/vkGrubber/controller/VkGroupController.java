@@ -32,7 +32,13 @@ public class VkGroupController {
         HttpStatus hs =  vkGroupService.setGroup(vkGroup);
         return new ResponseEntity<>(vkGroup, hs);
     }
-
+    @PostMapping("/setcount/{count}/{id}")
+    public ResponseEntity<VkGroup> setCount(@PathVariable int count, @PathVariable long id){
+        VkGroup vkGroup = vkGroupService.getGroup(id);
+        vkGroup.setCount(count);
+        HttpStatus hs = vkGroupService.setGroup(vkGroup);
+        return new ResponseEntity<>(vkGroup, hs);
+    }
     @DeleteMapping("/remove")
     public ResponseEntity<String> deleteGroup(@PathVariable Long id){
         String answer = vkGroupService.removeGroup(id);

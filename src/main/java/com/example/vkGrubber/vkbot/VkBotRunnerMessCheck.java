@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 @Component
-public class VkBotRunner implements VkRun{
+public class VkBotRunnerMessCheck implements VkRun{
     ResponcyImpl responcy = new ResponcyImpl();
 
     @SneakyThrows
@@ -51,7 +51,7 @@ public class VkBotRunner implements VkRun{
                             Fields field = Fields.MEMBERS_COUNT;
                             vk.groups().getByIdObjectLegacy(userActor).groupId(s).fields(field).execute().forEach(group ->{
                                 System.out.println(s);
-                                VkGroup vkGroup = new VkGroup(1L, group.getId(), group.getName(), group.getMembersCount(), group.getScreenName());
+                                VkGroup vkGroup = new VkGroup(group.getId(), group.getId(), group.getName(), group.getMembersCount(), group.getScreenName());
                                 responcy.saveGroupToApi(vkGroup);
                             });
                         } catch (ApiException e) {

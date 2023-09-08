@@ -35,8 +35,8 @@ public class VkGroupServiceImplTest {
     void testGetAllGroup() {
 
         List<VkGroup> groups = new ArrayList<>();
-        groups.add(new VkGroup(1L, 1,"Group 1", 1000, "url1"));
-        groups.add(new VkGroup(2L, 2,"Group 2",10000, "url2"));
+        groups.add(new VkGroup(1, 1,"Group 1", 1000, "url1"));
+        groups.add(new VkGroup(2, 2,"Group 2",10000, "url2"));
 
 
         when(vkGroupRepo.findAll()).thenReturn(groups);
@@ -53,7 +53,7 @@ public class VkGroupServiceImplTest {
     @Test
     void testGetGroup() {
 
-        VkGroup group = new VkGroup(1L, 1,"Group 1", 1000, "url1");
+        VkGroup group = new VkGroup(1, 1,"Group 1", 1000, "url1");
 
         when(vkGroupRepo.findById(1L)).thenReturn(Optional.of(group));
 
@@ -70,7 +70,7 @@ public class VkGroupServiceImplTest {
 
         when(vkGroupRepo.findById(1L)).thenReturn(Optional.empty());
 
-        VkGroup group = new VkGroup(1L, 1,"Group 1", 1000, "url1");
+        VkGroup group = new VkGroup(1, 1,"Group 1", 1000, "url1");
 
         HttpStatus result = vkGroupService.setGroup(group);
 
@@ -82,7 +82,7 @@ public class VkGroupServiceImplTest {
     @Test
     void testRemoveGroup() {
 
-        VkGroup group = new VkGroup(1L, 1,"Group 1", 1000, "url1");
+        VkGroup group = new VkGroup(1, 1,"Group 1", 1000, "url1");
         when(vkGroupRepo.findById(1L)).thenReturn(Optional.of(group));
 
         String result = vkGroupService.removeGroup(1L);
