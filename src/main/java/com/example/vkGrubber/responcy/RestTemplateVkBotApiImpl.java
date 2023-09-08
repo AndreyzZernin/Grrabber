@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class ResponcyImpl {
+public class RestTemplateVkBotApiImpl implements RestTemplateVkBotApi {
     public void saveGroupToApi(VkGroup vkGroup) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -58,7 +58,6 @@ public class ResponcyImpl {
     public String setCountToApi(int id , int count){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
         String url = "http://localhost:8085/group/setcount/"+ count + "/" + id;
 
         HttpEntity<?> requestEntity = new HttpEntity<>(headers);

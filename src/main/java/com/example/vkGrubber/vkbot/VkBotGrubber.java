@@ -1,9 +1,7 @@
 package com.example.vkGrubber.vkbot;
 
-import com.example.vkGrubber.responcy.ResponcyImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.example.vkGrubber.responcy.RestTemplateVkBotApi;
+import com.example.vkGrubber.responcy.RestTemplateVkBotApiImpl;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
@@ -17,11 +15,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.util.Arrays;
-
 public class VkBotGrubber implements VkRun{
 
-    ResponcyImpl responcy = new ResponcyImpl();
+    RestTemplateVkBotApi responcy = new RestTemplateVkBotApiImpl();
 
     @SneakyThrows
     @Override

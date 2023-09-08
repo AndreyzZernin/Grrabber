@@ -1,8 +1,7 @@
 package com.example.vkGrubber.vkbot;
 
 import com.example.vkGrubber.model.VkGroup;
-import com.example.vkGrubber.responcy.ResponcyImpl;
-import com.example.vkGrubber.service.VkGroupService;
+import com.example.vkGrubber.responcy.RestTemplateVkBotApiImpl;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
@@ -12,10 +11,8 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import com.vk.api.sdk.objects.groups.Fields;
 import com.vk.api.sdk.objects.messages.Message;
-import com.vk.api.sdk.queries.Field;
 import com.vk.api.sdk.queries.messages.MessagesGetLongPollHistoryQuery;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,7 +20,7 @@ import java.util.Random;
 
 @Component
 public class VkBotRunnerMessCheck implements VkRun{
-    ResponcyImpl responcy = new ResponcyImpl();
+    RestTemplateVkBotApiImpl responcy = new RestTemplateVkBotApiImpl();
 
     @SneakyThrows
     @Override
