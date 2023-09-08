@@ -61,16 +61,17 @@ public class RestTemplateVkBotApiImpl implements RestTemplateVkBotApi {
         String url = "http://localhost:8085/group/setcount/"+ count + "/" + id;
 
         HttpEntity<?> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
 
         HttpStatus status = (HttpStatus) responseEntity.getStatusCode();
 
-
-
         if (status == HttpStatus.OK) {
-            return "ok";
+            String response = responseEntity.getBody();
+            System.out.println("ok");
+            return response;
         } else {
-            return "bed";
+            System.out.println("err");
+            return "error";
         }
     }
 }
